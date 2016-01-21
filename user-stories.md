@@ -12,6 +12,7 @@
 * As a Marketing Research Team, we want all 3 random images to be different. Therefore, the same image should not be appearing twice.
 * As a Marketing Research Team, we want want to know what images were clicked on most so we can use that information to know what items to feature on the catalog as well as know what items to make in the warehouse.
 * As a Marketing Research Team, we want focus group individuals to not see results, but rather have an option to see results if they so choose to.
+* As a Marketing Research Team, we want these results to be displayed in a bar chart.
 * As a Marketing Research Team, we want attractive public-facing site, but not too many bold color as we want individuals to focus on task and not be distracted by other stuff on the app.
 
 ---
@@ -22,7 +23,7 @@
 * As a developer, I want to all 3 random images to be different.
 * As a developer, I want to utilize CSS for a color scheme that can be utilized in app.
 * As a developer, I want be sure that the public-facing page contains all information that Marketing Research Team requested.
-* As a developer, I want to present the store data in a table format on the webpage, so each store's data is easier to represent and understand
+* As a developer, I want to present the data in a Bar chart using Chart.JS
 
 ---
 * As As a Focus Group Participant, I want to know the purpose of the focus group.
