@@ -1,0 +1,14 @@
+README.md
+**.html
+**.css
+.gitignore
+css/**
+product/**
+js/chart.js
+.DS_Store
+.eslintrc
+.eslintignore
+.git/**
+user-stories.md
+LICENSE
+index.html

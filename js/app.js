@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var allProducts = [];
 var totalClicks = 0;
@@ -66,37 +66,37 @@ var img3 = document.getElementById('img3');
 //51: image1index will equal product that is pulls from randomProduct function
 //52. img1.src from HTML = allProducts[image1index] is already assigned an array number position and .filePath pulls the image from the directory
 function displayThreeImages() {
-    image1index = randomProduct();
-    img1.src = allProducts[image1index].filePath;
-    //numDisplay will keep track of numbers the image was displayed
-    allProducts[image1index].numDisplays += 1;
-    localStorage.setItem(allProducts[image1index].productName + 'NumDisplays', allProducts[image1index].numDisplays);
+  image1index = randomProduct();
+  img1.src = allProducts[image1index].filePath;
+  //numDisplay will keep track of numbers the image was displayed
+  allProducts[image1index].numDisplays += 1;
+  localStorage.setItem(allProducts[image1index].productName + 'NumDisplays', allProducts[image1index].numDisplays);
 
+  image2index = randomProduct();
+  while (image2index === image1index) {
     image2index = randomProduct();
-    while (image2index === image1index) {
-      image2index = randomProduct();
-    }
-    img2.src = allProducts[image2index].filePath;
-    allProducts[image2index].numDisplays += 1;
-    localStorage.setItem(allProducts[image2index].productName + 'NumDisplays', allProducts[image2index].numDisplays);
-
-    image3index = randomProduct();
-    while (image3index === image1index || image3index === image2index) {
-      image3index = randomProduct();
-    }
-    img3.src = allProducts[image3index].filePath;
-    allProducts[image3index].numDisplays += 1;
-    localStorage.setItem(allProducts[image3index].productName + 'NumDisplays', allProducts[image3index].numDisplays);
-
-    console.log(image1index);
-    console.log(image2index);
-    console.log(image3index);
   }
+  img2.src = allProducts[image2index].filePath;
+  allProducts[image2index].numDisplays += 1;
+  localStorage.setItem(allProducts[image2index].productName + 'NumDisplays', allProducts[image2index].numDisplays);
+
+  image3index = randomProduct();
+  while (image3index === image1index || image3index === image2index) {
+    image3index = randomProduct();
+  }
+  img3.src = allProducts[image3index].filePath;
+  allProducts[image3index].numDisplays += 1;
+  localStorage.setItem(allProducts[image3index].productName + 'NumDisplays', allProducts[image3index].numDisplays);
+
+  console.log(image1index);
+  console.log(image2index);
+  console.log(image3index);
+}
   //calling function to display 3 different random images
 displayThreeImages();
 
 //var to setup resultButton
-var resultButton = document.getElementById("showResults");
+var resultButton = document.getElementById('showResults');
 
 //EventListeners: When item is clicked then do what's inside of each function
 img1.addEventListener('click', handleImg1Click);
@@ -112,7 +112,7 @@ function handleImg1Click() {
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
     console.log('showbutton');
-    resultButton.removeAttribute("hidden");
+    resultButton.removeAttribute('hidden');
   }
   console.log(allProducts[image1index].productName + ' clicked ' + allProducts[image1index].numClicks + ' times');
   //need to call displayThreeImages function inside event handler function to display 3 different images. Otherwise only image1 will display three times.
@@ -121,12 +121,12 @@ function handleImg1Click() {
 
 function handleImg2Click() {
   allProducts[image2index].numClicks += 1;
-  localStorage.setItem(allProducts[image2index].productName + 'NumClicks', allProducts[image2index].numClicks),
+  localStorage.setItem(allProducts[image2index].productName + 'NumClicks', allProducts[image2index].numClicks);
   totalClicks += 1;
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
     console.log('showbutton');
-    resultButton.removeAttribute("hidden");
+    resultButton.removeAttribute('hidden');
   }
   console.log(allProducts[image2index].productName + ' clicked ' + allProducts[image2index].numClicks + ' times');
 
@@ -140,7 +140,7 @@ function handleImg3Click() {
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
     console.log('showbutton');
-    resultButton.removeAttribute("hidden");
+    resultButton.removeAttribute('hidden');
   }
   console.log(allProducts[image3index].productName + ' clicked ' + allProducts[image3index].numClicks + ' times');
 
@@ -178,20 +178,20 @@ function handleDataSubmit(event) {
   var data = {
     labels: ['Luggage', 'Banana Slicer', 'Rain Boots', 'Chair', 'Cthulhu', 'Dragon Meat', 'Utensil Pens', 'Pizza Scissors', 'Shark Sleeping Bag', 'Baby Sweeper', 'Unicorn Meat', 'USB', 'Watering Can', 'Wine Glass'],
     datasets: [{
-      label: "My First dataset",
-      fillColor: "rgba(220,220,220,0.5)",
-      strokeColor: "rgba(220,220,220,0.8)",
-      highlightFill: "rgba(220,220,220,0.75)",
-      highlightStroke: "rgba(220,220,220,1)",
+      label: 'My First dataset',
+      fillColor: 'rgba(220,220,220,0.5)',
+      strokeColor: 'rgba(220,220,220,0.8)',
+      highlightFill: 'rgba(220,220,220,0.75)',
+      highlightStroke: 'rgba(220,220,220,1)',
       data: allClicks
     }, {
-      label: "My Second dataset",
-      fillColor: "rgba(151,187,205,0.5)",
-      strokeColor: "rgba(151,187,205,0.8)",
-      highlightFill: "rgba(151,187,205,0.75)",
-      highlightStroke: "rgba(151,187,205,1)",
+      label: 'My Second dataset',
+      fillColor: 'rgba(151,187,205,0.5)',
+      strokeColor: 'rgba(151,187,205,0.8)',
+      highlightFill: 'rgba(151,187,205,0.75)',
+      highlightStroke: 'rgba(151,187,205,1)',
       data: alltimesDisplayed
     }]
   };
-  var myChart = new Chart(results).Bar(data)
-};
+  var myChart = new Chart(results).Bar(data) //eslint-disable-line
+}
