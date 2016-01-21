@@ -8,7 +8,6 @@ function Products(productName, filePath) {
   this.filePath = filePath;
   this.numClicks = 0;
   this.numDisplays = 0;
-  this.percentClicked = 0;
   //pushes instances into allProducts Array
   allProducts.push(this);
 }
@@ -28,6 +27,25 @@ var unicorn = new Products('unicorn', 'product/unicorn.jpg');
 var usb = new Products('usb', 'product/usb.gif');
 var watercan = new Products('water can', 'product/water-can.jpg');
 var wineglass = new Products('wine glass', 'product/wine-glass.jpg');
+
+function initializeLocalStorage() {
+  for (var k = 0; k < allProducts.length; k++){
+    var numClickToTest = localStorage.getItem(allProducts[k].productName + 'NumClicks');
+    if (numClickToTest) {
+      allProducts[k].numClicks = parseInt(numClickToTest);
+    } else {
+      localStorage.setItem(allProducts[k].productName + 'NumClicks', allProducts[k].numClicks);
+    }
+
+    var numDisplayToTest = localStorage.getItem(allProducts[k].productName + 'NumDisplays');
+    if (numDisplayToTest) {
+      allProducts[k].numDisplays = parseInt(numDisplayToTest);
+    } else {
+      localStorage.setItem(allProducts[k].productName + 'NumDisplays', allProducts[k].numDisplays);
+    }
+  }
+}
+initializeLocalStorage();
 
 //declaring a function for random numbers(to represent products in Array)
 function randomProduct() {
@@ -52,7 +70,7 @@ function displayThreeImages() {
     img1.src = allProducts[image1index].filePath;
     //numDisplay will keep track of numbers the image was displayed
     allProducts[image1index].numDisplays += 1;
-
+    localStorage.setItem(allProducts[image1index].productName + 'NumDisplays', allProducts[image1index].numDisplays);
 
     image2index = randomProduct();
     while (image2index === image1index) {
@@ -60,6 +78,7 @@ function displayThreeImages() {
     }
     img2.src = allProducts[image2index].filePath;
     allProducts[image2index].numDisplays += 1;
+    localStorage.setItem(allProducts[image2index].productName + 'NumDisplays', allProducts[image2index].numDisplays);
 
     image3index = randomProduct();
     while (image3index === image1index || image3index === image2index) {
@@ -67,6 +86,7 @@ function displayThreeImages() {
     }
     img3.src = allProducts[image3index].filePath;
     allProducts[image3index].numDisplays += 1;
+    localStorage.setItem(allProducts[image3index].productName + 'NumDisplays', allProducts[image3index].numDisplays);
 
     console.log(image1index);
     console.log(image2index);
@@ -84,8 +104,10 @@ img2.addEventListener('click', handleImg2Click);
 img3.addEventListener('click', handleImg3Click);
 
 //Event Handlers: When specific array image is clicked numClicks+=1 counts as one click, totalClicks keeps track of all clicks. If statement totalClicks equals 15 then remove hidden attirbute so that result Button will appear.
+
 function handleImg1Click() {
   allProducts[image1index].numClicks += 1;
+  localStorage.setItem(allProducts[image1index].productName + 'NumClicks', allProducts[image1index].numClicks);
   totalClicks += 1;
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
@@ -99,6 +121,7 @@ function handleImg1Click() {
 
 function handleImg2Click() {
   allProducts[image2index].numClicks += 1;
+  localStorage.setItem(allProducts[image2index].productName + 'NumClicks', allProducts[image2index].numClicks),
   totalClicks += 1;
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
@@ -112,6 +135,7 @@ function handleImg2Click() {
 
 function handleImg3Click() {
   allProducts[image3index].numClicks += 1;
+  localStorage.setItem(allProducts[image3index].productName + 'NumClicks', allProducts[image3index].numClicks);
   totalClicks += 1;
   console.log(totalClicks + ' totalClicks');
   if (totalClicks === 15) {
@@ -123,6 +147,12 @@ function handleImg3Click() {
   displayThreeImages();
 }
 
+var clearLSButton = document.getElementById('clearLS');
+clearLSButton.addEventListener('click', handleClearLS);
+
+function handleClearLS() {
+  localStorage.clear();
+}
 
 resultButton.addEventListener('click', handleDataSubmit);
 
